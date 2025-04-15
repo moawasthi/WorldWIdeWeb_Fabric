@@ -1,0 +1,104 @@
+table DimDate
+	lineageTag: 82b02b49-a6ed-4491-a6a4-c02a8af9399f
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 02f8c526-5542-4ba7-97b3-edddcc9ea5c8
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 9aebfd60-7154-4e00-91ce-553f0b144c9e
+			defaultHierarchy: LocalDateTable_a5feea47-86ce-48df-9c70-85d7b1cc8171.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Day_Number
+		dataType: int64
+		formatString: 0
+		lineageTag: f8c17f29-5bc2-4560-b6fc-b7a299a1e4dd
+		summarizeBy: sum
+		sourceColumn: Day_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: bad82219-c4dc-4a8a-b74b-4048ce9ec21d
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: be45a359-0418-473e-9be2-4f1cfa3d08e1
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Short_Month
+		dataType: string
+		lineageTag: 9a77859b-3e58-4467-bfb1-85a21a7b35c2
+		summarizeBy: none
+		sourceColumn: Short_Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calendar_Month_Number
+		dataType: int64
+		formatString: 0
+		lineageTag: 2903c79b-806a-44c0-94d0-d4d600129ff5
+		summarizeBy: sum
+		sourceColumn: Calendar_Month_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calendar_Month_Label
+		dataType: string
+		lineageTag: 17d34f0c-e278-4152-81a9-d6f66773696e
+		summarizeBy: none
+		sourceColumn: Calendar_Month_Label
+		sortByColumn: Calendar_Month_Number
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calendar_Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c473712-a142-438e-ab47-feac3ca06bdc
+		summarizeBy: sum
+		sourceColumn: Calendar_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calendar_Year_Label
+		dataType: string
+		lineageTag: bcbc31da-619c-42c5-a5ef-316e7625175c
+		summarizeBy: none
+		sourceColumn: Calendar_Year_Label
+		sortByColumn: Calendar_Year
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("ntxlhvgsk6mevfquc7bei5wwhm-wb4ax54psylezaw7gw2q7ozjg4.datawarehouse.fabric.microsoft.com", "GoldLayer"),
+				    dbo_DimDate = Source{[Schema="dbo",Item="DimDate"]}[Data]
+				in
+				    dbo_DimDate
+
+	annotation PBI_ResultType = Table
+

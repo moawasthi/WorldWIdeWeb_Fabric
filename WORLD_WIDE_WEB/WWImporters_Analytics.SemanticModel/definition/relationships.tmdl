@@ -1,0 +1,18 @@
+relationship 9aebfd60-7154-4e00-91ce-553f0b144c9e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.Date
+	toColumn: LocalDateTable_a5feea47-86ce-48df-9c70-85d7b1cc8171.Date
+
+relationship e050aa23-8a61-48fb-bba6-d50e971fc747
+	joinOnDateBehavior: datePartOnly
+	fromColumn: factorders.Picking_Date
+	toColumn: LocalDateTable_32ad4b52-0dbb-4816-9340-96f31c0ec04a.Date
+
+relationship AutoDetected_e8002725-64d2-41b1-839f-7407bfb51c7a
+	fromColumn: factorders.Customer_Key
+	toColumn: DimCustomer.Customer_Key
+
+relationship 277312f3-3482-9896-2b07-5c19a7516370
+	fromColumn: factorders.Order_Date
+	toColumn: DimDate.Date
+

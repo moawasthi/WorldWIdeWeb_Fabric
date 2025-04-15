@@ -1,0 +1,23 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DimCustomer","DimDate","factorders"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.138.1452.0 (24.11)
+
+ref table DimCustomer
+ref table DimDate
+ref table DateTableTemplate_80b85b78-808a-443e-b56e-da92bab38e27
+ref table LocalDateTable_a5feea47-86ce-48df-9c70-85d7b1cc8171
+ref table factorders
+ref table LocalDateTable_32ad4b52-0dbb-4816-9340-96f31c0ec04a
+
+ref cultureInfo en-US
+

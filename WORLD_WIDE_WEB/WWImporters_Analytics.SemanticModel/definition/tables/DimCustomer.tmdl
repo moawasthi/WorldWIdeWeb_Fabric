@@ -1,0 +1,76 @@
+table DimCustomer
+	lineageTag: eff16f6a-fa53-4ffd-80d6-5a21d85e511d
+
+	column Customer_Key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9b424b53-925b-49d3-a9bd-b28abfb48aa8
+		summarizeBy: none
+		sourceColumn: Customer_Key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column WWI_Customer_ID
+		dataType: double
+		lineageTag: 05239919-7661-4e46-a1f2-9beebdc45580
+		summarizeBy: none
+		sourceColumn: WWI_Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Customer
+		dataType: string
+		lineageTag: e2f8b453-31c0-4517-9733-8c66c45e72e4
+		summarizeBy: none
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bill_To_Customer
+		dataType: string
+		lineageTag: 0678e600-37e0-4088-91bd-45a9eabe582c
+		summarizeBy: none
+		sourceColumn: Bill_To_Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 2931a5aa-9944-4529-8fa1-933d8ffdaf1f
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Buying_Group
+		dataType: string
+		lineageTag: 197d6d51-b0b6-4de5-8ccd-2cb8b1ea6d59
+		summarizeBy: none
+		sourceColumn: Buying_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Primary_Contact
+		dataType: string
+		lineageTag: 44161a9e-0829-4101-9138-35058a68788c
+		summarizeBy: none
+		sourceColumn: Primary_Contact
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCustomer = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("ntxlhvgsk6mevfquc7bei5wwhm-wb4ax54psylezaw7gw2q7ozjg4.datawarehouse.fabric.microsoft.com", "GoldLayer"),
+				    dbo_DimCustomer = Source{[Schema="dbo",Item="DimCustomer"]}[Data]
+				in
+				    dbo_DimCustomer
+
+	annotation PBI_ResultType = Table
+

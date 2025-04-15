@@ -1,0 +1,149 @@
+table factorders
+	lineageTag: 7b798225-6e73-43d3-b0ba-bf60d95d422b
+
+	measure 'Total Orders' = DISTINCTCOUNT( factorders[OrderID] )
+		formatString: 0
+		lineageTag: 35f96710-31b5-4b4c-bb15-baf6727c44cd
+
+	measure 'Total Quantity' = SUM(factorders[Quantity])
+		formatString: 0
+		lineageTag: 5db16c94-ffb9-4c61-80c6-4b36b7cc4df2
+
+	column Picking_Date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 271a99d6-b52d-4a8a-b226-e006664a52aa
+		summarizeBy: none
+		sourceColumn: Picking_Date
+
+		variation Variation
+			isDefault
+			relationship: e050aa23-8a61-48fb-bba6-d50e971fc747
+			defaultHierarchy: LocalDateTable_32ad4b52-0dbb-4816-9340-96f31c0ec04a.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Customer_Key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cb4229f8-048d-4b25-8c68-635b1f793538
+		summarizeBy: none
+		sourceColumn: Customer_Key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 841c0c67-24e1-48e3-993c-1436b5987c41
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5a2df82d-aa3a-4030-9d9a-8c99c2a4add6
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: double
+		isHidden
+		lineageTag: 0f091ebe-9880-4075-b239-f176078454f4
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TaxRate
+		dataType: double
+		isHidden
+		lineageTag: 803dbfe7-6e49-48e7-a515-946f11b88e29
+		summarizeBy: sum
+		sourceColumn: TaxRate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PickedQuantity
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d3d3f932-0b94-491f-a89d-1a60bf26b994
+		summarizeBy: sum
+		sourceColumn: PickedQuantity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 46225b10-40c0-492b-8325-4a6e95ebfd2e
+		summarizeBy: count
+		sourceColumn: OrderID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 45e14c20-ec37-4b8f-bea3-7cbfafdc35e9
+		summarizeBy: none
+		sourceColumn: Order_Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Order_Fullfillment_Time
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6e9e77d9-7657-478e-9540-13bf67160168
+		summarizeBy: sum
+		sourceColumn: Order_Fullfillment_Time
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition factorders = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("ntxlhvgsk6mevfquc7bei5wwhm-wb4ax54psylezaw7gw2q7ozjg4.datawarehouse.fabric.microsoft.com", "GoldLayer"),
+				    dbo_factorders = Source{[Schema="dbo",Item="factorders"]}[Data]
+				in
+				    dbo_factorders
+
+	annotation PBI_ResultType = Table
+
