@@ -33,21 +33,22 @@
           },
           "sink": {
             "type": "LakehouseTableSink",
-            "tableActionOption": "OverwriteSchema",
+            "tableActionOption": "Append",
             "partitionOption": "None",
             "datasetSettings": {
               "type": "LakehouseTable",
               "typeProperties": {
+                "schema": "dbo",
                 "table": "config_table"
               },
               "schema": [],
               "linkedService": {
-                "name": "BronzeLayer",
+                "name": "6b52e18d_9714_4c75_b267_87ec4d89197b",
                 "properties": {
                   "type": "Lakehouse",
                   "typeProperties": {
-                    "artifactId": "4d72dcca-75c6-a8eb-4066-a5669b09cf1a",
-                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "artifactId": "@pipeline().parameters.BronzeLayer_Connection",
+                    "workspaceId": "f70b78b0-968f-4c16-82df-35b50fbb2937",
                     "rootFolder": "Tables"
                   },
                   "annotations": []
@@ -332,6 +333,12 @@
         ]
       }
     ],
+    "parameters": {
+      "BronzeLayer_Connection": {
+        "type": "String",
+        "defaultValue": "BronzeLayer"
+      }
+    },
     "variables": {
       "FilePath": {
         "type": "String"
