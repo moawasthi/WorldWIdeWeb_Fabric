@@ -34,21 +34,19 @@
           "sink": {
             "type": "LakehouseTableSink",
             "tableActionOption": "Append",
-            "partitionOption": "None",
             "datasetSettings": {
               "type": "LakehouseTable",
               "typeProperties": {
-                "schema": "dbo",
                 "table": "config_table"
               },
               "schema": [],
               "linkedService": {
-                "name": "6b52e18d_9714_4c75_b267_87ec4d89197b",
+                "name": "BronzeLayer",
                 "properties": {
                   "type": "Lakehouse",
                   "typeProperties": {
-                    "artifactId": "@pipeline().parameters.BronzeLayer_Connection",
-                    "workspaceId": "f70b78b0-968f-4c16-82df-35b50fbb2937",
+                    "artifactId": "4d72dcca-75c6-a8eb-4066-a5669b09cf1a",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
                     "rootFolder": "Tables"
                   },
                   "annotations": []
